@@ -1,0 +1,27 @@
+.alert-secondColor {
+  background-color: #FF4269;
+  color: white !important;
+}
+
+.btn-editar, .btn-eliminar {
+  top: 736px;
+  left: 1712px;
+  width: 31px;
+  height: 31px;
+  background: #29628D12 0% 0% no-repeat padding-box;
+  border: 0.30000001192092896px solid #29628D;
+  opacity: 1;
+  border-radius: 50%;
+}
+
+.iconEditar {
+  color: #29628D;
+}
+
+.iconEliminar {
+  color: #FF4269;
+}
+
+.editarInactive{
+  background: #FFFFFF 0% 0% no-repeat padding-box
+}

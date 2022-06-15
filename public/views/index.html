@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <base href="/Prueba2022/">
+  <title>Gestión de equipos</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,500" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="stylesheet" href="public/views/style.css">
+  <script src="https://kit.fontawesome.com/0e4230e118.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+  <div class="container">
+    <div class="display-flex mb-4" style="height: 40px; width: 100%">
+      <h6 style="flex: 1 1 auto">Registro computadores</h6>
+      <img src="assets/img/gc-icon.png" style="height: 100%" />
+    </div>
+    <!-- Formulario de inserción -->
+    <form id="register-form" class="row" onsubmit="Computador.add(event)">
+      <!-- gce_nombre_equipo -->
+      <div class="mb-3 col-lg-4 col-sm-6">
+        <input required class="form-control" type="text" name="gce_nombre_equipo" placeholder="Nombre del equipo" />
+      </div>
+      <!-- gce_board -->
+      <div class="mb-3 col-lg-4 col-sm-6">
+        <input required class="form-control" type="text" name="gce_board" placeholder="Board" />
+      </div>
+      <!-- gce_case -->
+      <div class="mb-3 col-lg-4 col-sm-6">
+        <input required class="form-control" type="text" name="gce_case" placeholder="Case" />
+      </div>
+      <!-- gce_procesador -->
+      <div class="mb-3 col-lg-4 col-sm-6">
+        <input required class="form-control" type="text" name="gce_procesador" placeholder="Procesador" />
+      </div>
+      <!-- gce_grafica -->
+      <div class="mb-3 col-lg-4 col-sm-6">
+        <input required class="form-control" type="text" name="gce_grafica" placeholder="Gráfica" />
+      </div>
+      <!-- gce_ram -->
+      <div class="mb-3 col-lg-4 col-sm-6">
+        <input required class="form-control" type="text" name="gce_ram" placeholder="Ram" />
+      </div>
+      <!-- gce_disco_duro -->
+      <div class="mb-3 col-lg-4 col-sm-6">
+        <input required class="form-control" type="text" name="gce_disco_duro" placeholder="Disco" />
+      </div>
+      <!-- gce_teclado -->
+      <div class="mb-3 col-lg-4 col-sm-6">
+        <input required class="form-control" type="text" name="gce_teclado" placeholder="Teclado" />
+      </div>
+      <!-- gce_mouse -->
+      <div class="mb-3 col-lg-4 col-sm-6">
+        <input required class="form-control" type="text" name="gce_mouse" placeholder="Mouse" />
+      </div>
+      <!-- gce_pantalla -->
+      <div class="mb-3 col-sm-6 col-lg-6">
+        <input required class="form-control" type="text" name="gce_pantalla" placeholder="Pantalla" />
+      </div>
+      <!-- gce_estado -->
+      <label class="mb-3 col-sm-6 col-lg-6 position-relative">
+        <div class="position-absolute">Estado</div>
+        <select class="form-select" name="gce_estado">
+          <option value="0">Inactivo</option>
+          <option value="1" selected>Activo</option>
+        </select>
+      </label>
+      <div class="col-12 mb-3 display-grid">
+        <button type="submit" class="btn btn-primary">
+          <i class="fas fa-plus-square me-2 vertical-align-middle" style="font-size: 1.2em"></i>
+          Agregar
+        </button>
+      </div>
+    </form>
+    <h6 class="ms-5">Computadores</h6>
+    <!-- Listado -->
+    <div class="card">
+      <div class="card-body">
+        <table id="list-table" class="table table-striped">
+          <thead>
+            <tr>
+              <th>Nombre</th>
+              <th>Board</th>
+              <th>Case</th>
+              <th>Procesador</th>
+              <th>Gráfica</th>
+              <th>Ram</th>
+              <th>Disco duro</th>
+              <th>Teclado</th>
+              <th>Mouse</th>
+              <th>Pantalla</th>
+              <th>Estado</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal -->
+  <div id="modalEdicion" class="modal fade">
+    <div class="modal-dialog modal-xl">
+      <div class="modal-content">
+        <div class="modal-header">
+          <div class="modal-title" id="modalEdicionLabel">
+            <h5 class="fw-bold m-0">
+              Actualizar datos del computador
+            </h5>
+          </div>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form id="register-form" class="row">
+            <!-- gce_id -->
+            <div class="mb-3 col-lg-4 col-sm-6" hidden>
+              <input required class="form-control" type="text" id="gce_id_actualizado" />
+            </div>
+            <!-- gce_nombre_equipo -->
+            <div class="mb-3 col-lg-4 col-sm-6">
+              <input required class="form-control" type="text" id="gce_nombre_equipo_actualizado"
+                placeholder="Nombre del equipo" />
+            </div>
+            <!-- gce_board -->
+            <div class="mb-3 col-lg-4 col-sm-6">
+              <input required class="form-control" type="text" id="gce_board_actualizado" placeholder="Board" />
+            </div>
+            <!-- gce_case -->
+            <div class="mb-3 col-lg-4 col-sm-6">
+              <input required class="form-control" type="text" id="gce_case_actualizado" placeholder="Case" />
+            </div>
+            <!-- gce_procesador -->
+            <div class="mb-3 col-lg-4 col-sm-6">
+              <input required class="form-control" type="text" id="gce_procesador_actualizado"
+                placeholder="Procesador" />
+            </div>
+            <!-- gce_grafica -->
+            <div class="mb-3 col-lg-4 col-sm-6">
+              <input required class="form-control" type="text" id="gce_grafica_actualizado" placeholder="Gráfica" />
+            </div>
+            <!-- gce_ram -->
+            <div class="mb-3 col-lg-4 col-sm-6">
+              <input required class="form-control" type="text" id="gce_ram_actualizado" placeholder="Ram" />
+            </div>
+            <!-- gce_disco_duro -->
+            <div class="mb-3 col-lg-4 col-sm-6">
+              <input required class="form-control" type="text" id="gce_disco_duro_actualizado" placeholder="Disco" />
+            </div>
+            <!-- gce_teclado -->
+            <div class="mb-3 col-lg-4 col-sm-6">
+              <input required class="form-control" type="text" id="gce_teclado_actualizado" placeholder="Teclado" />
+            </div>
+            <!-- gce_mouse -->
+            <div class="mb-3 col-lg-4 col-sm-6">
+              <input required class="form-control" type="text" id="gce_mouse_actualizado" placeholder="Mouse" />
+            </div>
+            <!-- gce_pantalla -->
+            <div class="mb-3 col-sm-6 col-lg-6">
+              <input required class="form-control" type="text" id="gce_pantalla_actualizado" placeholder="Pantalla" />
+            </div>
+            <!-- gce_estado -->
+            <label class="mb-3 col-sm-6 col-lg-6 position-relative">
+              <div class="position-absolute">Estado</div>
+              <select class="form-select" id="gce_estado_actualizado">
+                <option value="0">Inactivo</option>
+                <option value="1" selected>Activo</option>
+              </select>
+            </label>
+            <div class="col-12 mb-3 display-grid">
+              <button onclick="Computador.actualizarComputador(event)" class="btn btn-primary" data-bs-dismiss="modal">
+                <i class="fas fa-plus-square me-2 vertical-align-middle" style="font-size: 1.2em"></i>
+                Actualizar
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+    integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2"
+    crossorigin="anonymous"></script>
+  <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <script type="module" src="public/views/script.js"></script>
+</body>
+
+</html>
