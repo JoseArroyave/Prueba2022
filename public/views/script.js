@@ -68,7 +68,23 @@ class Computador {
     ApiRequest.post('Caracteristicas', 'addOne', parameters).then((response) => {
       console.log('Añadir', response);
       this.get();
+      Swal.fire({
+        icon: 'success',
+        text: 'El computador ha sido añadido',
+      })
     }).catch(error => console.log('Ha ocurrido un error', error));
+
+    document.querySelector('[name="gce_nombre_equipo"]').value = ''
+    document.querySelector('[name="gce_board"]').value = ''
+    document.querySelector('[name="gce_case"]').value = ''
+    document.querySelector('[name="gce_procesador"]').value = ''
+    document.querySelector('[name="gce_grafica"]').value = ''
+    document.querySelector('[name="gce_ram"]').value = ''
+    document.querySelector('[name="gce_disco_duro"]').value = ''
+    document.querySelector('[name="gce_teclado"]').value = ''
+    document.querySelector('[name="gce_mouse"]').value = ''
+    document.querySelector('[name="gce_pantalla"]').value = ''
+    document.querySelector('[name="gce_estado"]').value = ''
   };
 
   /**
