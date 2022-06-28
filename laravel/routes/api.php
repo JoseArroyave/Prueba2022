@@ -6,4 +6,5 @@ Route::get('/getAll', [gce_caracteristicasController::class, 'getAll']);
 Route::get('/getOne/{id}', [gce_caracteristicasController::class, 'getOne']);
 Route::post('/create', [gce_caracteristicasController::class, 'create']);
 Route::put('/update/{id}', [gce_caracteristicasController::class, 'update']);
+Route::put('/updateStatus/{id}', [gce_caracteristicasController::class, 'updateStatus']);
 Route::delete('/delete/{id}', [gce_caracteristicasController::class, 'delete']);

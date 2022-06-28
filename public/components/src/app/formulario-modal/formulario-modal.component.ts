@@ -1,37 +1,45 @@
-import { Component, Input, OnInit, ViewChild } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges, ViewChild } from '@angular/core';
 import { Computer } from '../app.interface';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { Form, FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-formulario-modal',
   templateUrl: './formulario-modal.component.html'
 })
-export class FormularioModalComponent implements OnInit {
+export class FormularioModalComponent implements OnInit, OnChanges {
 
   constructor(private modal: NgbModal, private fb: FormBuilder) { }
   ngOnInit(): void {
   }
 
   @Input('computerToUpdate') computerToUpdate!: any
+  @Output() computadorActualizado = new EventEmitter<Computer>()
   @ViewChild('contenido') contenido: any;
 
   updatedForm: FormGroup = this.fb.group({
-    gce_id_actualizado: [],
-    gce_nombre_equipo_actualizado: [],
-    gce_board_actualizado: [],
-    gce_case_actualizado: [],
-    gce_procesador_actualizado: [],
-    gce_grafica_actualizado: [],
-    gce_ram_actualizado: [],
-    gce_disco_duro_actualizado: [],
-    gce_teclado_actualizado: [],
-    gce_mouse_actualizado: [],
-    gce_estado_actualizado: []
+    gce_id: [],
+    gce_nombre_equipo: [],
+    gce_board: [],
+    gce_case: [],
+    gce_procesador: [],
+    gce_grafica: [],
+    gce_ram: [],
+    gce_disco_duro: [],
+    gce_teclado: [],
+    gce_mouse: [],
+    gce_pantalla: [],
+    gce_estado: []
   })
 
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes['computerToUpdate']) {
+      this.updatedForm.patchValue(changes['computerToUpdate'].currentValue)
+    }
+  }
+
   onSubmit(): void {
-    console.log('Form ->', this.computerToUpdate.gce_id)
+    this.computadorActualizado.emit(this.updatedForm.value)
     this.dismssModal()
   }
 

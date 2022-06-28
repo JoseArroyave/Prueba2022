@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { faPencil, faTrash } from '@fortawesome/free-solid-svg-icons';
 import Swal from 'sweetalert2';
-import { ComputerUpdate } from './app.interface';
+import { Computer } from './app.interface';
 import { AppService } from './app.service';
 import { FormularioModalComponent } from './formulario-modal/formulario-modal.component';
 
@@ -13,6 +14,8 @@ export class AppComponent implements OnInit {
 
   computers: any = []
   computerToUpdate: any = []
+  faPencil = faPencil
+  faTrash = faTrash
 
   @ViewChild('contenido') contenido!: FormularioModalComponent;
 
@@ -22,10 +25,10 @@ export class AppComponent implements OnInit {
     this.getAll()
   }
 
-  changeSwitch(id: number, status: any) {
-    this.service.updateStatus({ gce_id_actualizado: id, gce_estado_actualizado: status }).subscribe(resp =>
-      console.log(resp)
-    )
+  changeSwitch(computer: Computer) {
+    this.service.updateStatus({ gce_id: computer.gce_id, gce_estado: computer.gce_estado === 0 ? 1 : 0 }).subscribe(resp => (
+      computer.gce_estado = resp.gce_estado
+    ))
   }
 
   getAll() {
@@ -39,18 +42,34 @@ export class AppComponent implements OnInit {
     this.contenido.openModal()
   }
 
-  delete(id: number) {
-    this.service.delete(id).subscribe(resp =>
-      console.log(resp)
+  delete(id: number, nombre: string) {
+    this.service.delete(id).subscribe(() => (
+      this.computers.pop(),
+      this.getAll(),
+      Swal.fire({
+        icon: 'success',
+        text: `El equipo ${nombre} ha sido eliminado`,
+      }))
     )
   }
 
-  create($event: any) {
-    this.service.create($event).subscribe(() =>
+  create($event: Computer) {
+    this.service.create($event).subscribe(data => (
+      this.computers.push(data),
       Swal.fire({
         icon: 'success',
         text: `El equipo ${$event.gce_nombre_equipo} ha sido agregado`,
-      })
+      }))
+    )
+  }
+
+  update($event: Computer) {
+    this.service.update($event).subscribe(data => (
+      this.getAll(),
+      Swal.fire({
+        icon: 'success',
+        text: `El equipo ${data.gce_nombre_equipo} ha sido actualizado correctamente`,
+      }))
     )
   }
 }

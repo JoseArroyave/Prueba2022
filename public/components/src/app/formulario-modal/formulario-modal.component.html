@@ -14,71 +14,55 @@
     <form id="register-form" class="row" [formGroup]="updatedForm" (ngSubmit)="onSubmit()">
       <!-- gce_id -->
       <div class="mb-3 col-lg-4 col-sm-6" hidden>
-        <input required class="form-control" type="text" formControlName="gce_id_actualizado" />
-        <!-- [value]="computerToUpdate.gce_id" -->
+        <input required class="form-control" type="text" formControlName="gce_id" />
       </div>
       <!-- gce_nombre_equipo -->
       <div class="mb-3 col-lg-4 col-sm-6">
-        <input required class="form-control" type="text" formControlName="gce_nombre_equipo_actualizado"
+        <input required class="form-control" type="text" formControlName="gce_nombre_equipo"
           placeholder="Nombre del equipo" />
-        <!-- [value]="computerToUpdate.gce_nombre_equipo"  -->
       </div>
       <!-- gce_board -->
       <div class="mb-3 col-lg-4 col-sm-6">
-        <input required class="form-control" type="text" formControlName="gce_board_actualizado" placeholder="Board" />
-        <!-- [value]="computerToUpdate.gce_board" -->
+        <input required class="form-control" type="text" formControlName="gce_board" placeholder="Board" />
       </div>
       <!-- gce_case -->
       <div class="mb-3 col-lg-4 col-sm-6">
-        <input required class="form-control" type="text" formControlName="gce_case_actualizado" placeholder="Case" />
-        <!-- [value]="computerToUpdate.gce_case" -->
+        <input required class="form-control" type="text" formControlName="gce_case" placeholder="Case" />
       </div>
       <!-- gce_procesador -->
       <div class="mb-3 col-lg-4 col-sm-6">
-        <input required class="form-control" type="text" formControlName="gce_procesador_actualizado"
-          placeholder="Procesador" />
-        <!-- [value]="computerToUpdate.gce_procesador" -->
+        <input required class="form-control" type="text" formControlName="gce_procesador" placeholder="Procesador" />
       </div>
       <!-- gce_grafica -->
       <div class="mb-3 col-lg-4 col-sm-6">
-        <input required class="form-control" type="text" formControlName="gce_grafica_actualizado"
-          placeholder="Gráfica" />
-        <!-- [value]="computerToUpdate.gce_grafica" -->
+        <input required class="form-control" type="text" formControlName="gce_grafica" placeholder="Gráfica" />
       </div>
       <!-- gce_ram -->
       <div class="mb-3 col-lg-4 col-sm-6">
-        <input required class="form-control" type="text" formControlName="gce_ram_actualizado" placeholder="Ram" />
-        <!-- [value]="computerToUpdate.gce_ram" -->
+        <input required class="form-control" type="text" formControlName="gce_ram" placeholder="Ram" />
       </div>
       <!-- gce_disco_duro -->
       <div class="mb-3 col-lg-4 col-sm-6">
-        <input required class="form-control" type="text" formControlName="gce_disco_duro_actualizado"
-          placeholder="Disco" />
-        <!-- [value]="computerToUpdate.gce_disco_duro"  -->
+        <input required class="form-control" type="text" formControlName="gce_disco_duro" placeholder="Disco" />
       </div>
       <!-- gce_teclado -->
       <div class="mb-3 col-lg-4 col-sm-6">
-        <input required class="form-control" type="text" formControlName="gce_teclado_actualizado"
-          placeholder="Teclado" />
-        <!-- [value]="computerToUpdate.gce_teclado" -->
+        <input required class="form-control" type="text" formControlName="gce_teclado" placeholder="Teclado" />
       </div>
       <!-- gce_mouse -->
       <div class="mb-3 col-lg-4 col-sm-6">
-        <input required class="form-control" type="text" formControlName="gce_mouse_actualizado" placeholder="Mouse" />
-        <!-- [value]="computerToUpdate.gce_mouse" -->
+        <input required class="form-control" type="text" formControlName="gce_mouse" placeholder="Mouse" />
       </div>
       <!-- gce_pantalla -->
       <div class="mb-3 col-sm-6 col-lg-6">
-        <input required class="form-control" type="text" formControlName="gce_mouse_actualizado"
-          placeholder="Pantalla" />
-        <!-- [value]="computerToUpdate.gce_pantalla" -->
+        <input required class="form-control" type="text" formControlName="gce_pantalla" placeholder="Pantalla" />
       </div>
       <!-- gce_estado -->
       <label class="mb-3 col-sm-6 col-lg-6 position-relative">
         <div class="position-absolute">Estado</div>
-        <select class="form-select">
-          <option value="0" [selected]="computerToUpdate.gce_estado === 0">Inactivo</option>
-          <option value="1" [selected]="computerToUpdate.gce_estado === 1">Activo</option>
+        <select class="form-select" formControlName="gce_estado">
+          <option value=0 [selected]="computerToUpdate.gce_estado === 0">Inactivo</option>
+          <option value=1 [selected]="computerToUpdate.gce_estado === 1">Activo</option>
         </select>
       </label>
       <div class="col-3 mb-3 display-grid">

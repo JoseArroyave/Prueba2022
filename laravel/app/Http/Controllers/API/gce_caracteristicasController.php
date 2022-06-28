@@ -58,9 +58,17 @@ class gce_caracteristicasController extends Controller
         return $registro;
     }
 
+    public function updateStatus(Request $request)
+    {
+        $registro = gce_caracteristicas::findOrFail($request->id);
+        $registro->gce_estado = $request->gce_estado;
+
+        $registro->save();
+        return $registro;
+    }
+
     public function delete($id)
     {
-        gce_caracteristicas::destroy($id);
-        return 'El registro #' . $id . ' ha sido eliminado correctamente';
+        return gce_caracteristicas::destroy($id);
     }
 }

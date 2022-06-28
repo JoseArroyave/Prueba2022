@@ -10,24 +10,7 @@ export interface Computer {
     gce_teclado: string;
     gce_mouse: string;
     gce_pantalla: string;
-    gce_estado: number | string;
-    created_at: Date | null;
-    updated_at: Date | null;
-}
-
-export interface ComputerUpdate {
-    gce_id_actualizado?: number;
-    gce_nombre_equipo_actualizado?: string;
-    gce_board_actualizado?: string;
-    gce_case_actualizado?: string;
-    gce_procesador_actualizado?: string;
-    gce_grafica_actualizado?: string;
-    gce_ram_actualizado?: string;
-    gce_disco_duro_actualizado?: string;
-    gce_teclado_actualizado?: string;
-    gce_mouse_actualizado?: string;
-    gce_pantalla_actualizado?: string;
-    gce_estado_actualizado?: number | string;
+    gce_estado: number;
     created_at?: Date | null;
     updated_at?: Date | null;
 }
