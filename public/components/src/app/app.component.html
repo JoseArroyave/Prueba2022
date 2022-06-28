@@ -4,7 +4,8 @@
       <h6 style="flex: 1 1 auto">Registro computadores</h6>
       <img src="../assets/img/gc-icon.png" style="height: 100%" />
     </div>
-    <app-formulario-modal [computerToUpdate]="computerToUpdate"></app-formulario-modal>
+
+    <app-formulario-modal [computerToUpdate]="computerToUpdate" #contenido></app-formulario-modal>
 
     <app-formulario (computadorNuevo)="create($event)"></app-formulario>
     <h6 class="ms-5">Computadores</h6>
@@ -42,7 +43,8 @@
               <td #td>{{computer.gce_pantalla}}</td>
               <td #td>
                 <div class="form-check form-switch">
-                  <input class="form-check-input" type="checkbox" role="switch" [checked]="computer.gce_estado=== 1">
+                  <input class="form-check-input" type="checkbox" (click)="changeSwitch(computer.gce_id, computer.gce_estado)" role="switch"
+                    [checked]="computer.gce_estado=== 1">
                 </div>
               </td>
               <td><button type='button' class='btn-editar' (click)="getOne(computer.gce_id)">

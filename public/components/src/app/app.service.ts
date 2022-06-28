@@ -8,6 +8,7 @@ import { Computer, ComputerUpdate } from './app.interface';
 })
 export class AppService {
 
+
   #apiPath = 'http://127.0.0.1:8000/api';
 
   constructor(private http: HttpClient) { }
@@ -28,7 +29,11 @@ export class AppService {
     return this.http.post<Computer>(`${this.#apiPath}/create/`, parameters);
   }
 
-  update(parameters: ComputerUpdate): Observable<ComputerUpdate> {
+  update(id: number, parameters: ComputerUpdate): Observable<ComputerUpdate> {
     return this.http.post<ComputerUpdate>(`${this.#apiPath}/update/${parameters.gce_id_actualizado}`, parameters);
+  }
+
+  updateStatus(parameters: ComputerUpdate): Observable<ComputerUpdate> {
+    return this.http.post<ComputerUpdate>(`${this.#apiPath}/update/${parameters.gce_id_actualizado}/`, parameters);
   }
 }

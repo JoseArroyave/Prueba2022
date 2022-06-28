@@ -3,7 +3,8 @@ import { BrowserModule, } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { AppComponent } from './app.component';
 import { FormularioComponent } from './formulario/formulario.component';
@@ -20,7 +21,9 @@ import { FormularioModalComponent } from './formulario-modal/formulario-modal.co
     HttpClientModule,
     BrowserModule,
     CommonModule,
-    FormsModule
+    FormsModule,
+    NgbModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

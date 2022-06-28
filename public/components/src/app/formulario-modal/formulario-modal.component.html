@@ -1,87 +1,92 @@
 <!-- Modal -->
-<!-- <div id="modalEdicion" class="modal fade">
-  <div class="modal-dialog modal-xl">
-    <div class="modal-content">
-      <div class="modal-header">
-        <div class="modal-title" id="modalEdicionLabel"> -->
-<!-- <h5 class="fw-bold m-0">
-            Editar rol
-          </h5>
-        </div>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div> -->
-<!-- <div class="modal-body"> -->
-<form id="register-form" class="row">
-  <!-- gce_id -->
-  <div class="mb-3 col-lg-4 col-sm-6" hidden>
-    <input required class="form-control" type="text" [value]="computerToUpdate.gce_id" id="gce_id_actualizado" />
-  </div>
-  <!-- gce_nombre_equipo -->
-  <div class="mb-3 col-lg-4 col-sm-6">
-    <input required class="form-control" type="text" [value]="computerToUpdate.gce_nombre_equipo"
-      id="gce_nombre_equipo_actualizado" placeholder="Nombre del equipo" />
-  </div>
-  <!-- gce_board -->
-  <div class="mb-3 col-lg-4 col-sm-6">
-    <input required class="form-control" type="text" [value]="computerToUpdate.gce_board" id="gce_board_actualizado"
-      placeholder="Board" />
-  </div>
-  <!-- gce_case -->
-  <div class="mb-3 col-lg-4 col-sm-6">
-    <input required class="form-control" type="text" [value]="computerToUpdate.gce_case" id="gce_case_actualizado"
-      placeholder="Case" />
-  </div>
-  <!-- gce_procesador -->
-  <div class="mb-3 col-lg-4 col-sm-6">
-    <input required class="form-control" type="text" [value]="computerToUpdate.gce_procesador"
-      id=" gce_procesador_actualizado" placeholder="Procesador" />
-  </div>
-  <!-- gce_grafica -->
-  <div class="mb-3 col-lg-4 col-sm-6">
-    <input required class="form-control" type="text" [value]="computerToUpdate.gce_grafica" id="gce_grafica_actualizado"
-      placeholder="Gráfica" />
-  </div>
-  <!-- gce_ram -->
-  <div class="mb-3 col-lg-4 col-sm-6">
-    <input required class="form-control" type="text" [value]="computerToUpdate.gce_ram" id="gce_ram_actualizado"
-      placeholder="Ram" />
-  </div>
-  <!-- gce_disco_duro -->
-  <div class="mb-3 col-lg-4 col-sm-6">
-    <input required class="form-control" type="text" [value]="computerToUpdate.gce_disco_duro"
-      id=" gce_disco_duro_actualizado" placeholder="Disco" />
-  </div>
-  <!-- gce_teclado -->
-  <div class="mb-3 col-lg-4 col-sm-6">
-    <input required class="form-control" type="text" [value]="computerToUpdate.gce_teclado"
-      id=" gce_teclado_actualizado" placeholder="Teclado" />
-  </div>
-  <!-- gce_mouse -->
-  <div class="mb-3 col-lg-4 col-sm-6">
-    <input required class="form-control" type="text" [value]="computerToUpdate.gce_mouse" id="gce_mouse_actualizado"
-      placeholder="Mouse" />
-  </div>
-  <!-- gce_pantalla -->
-  <div class="mb-3 col-sm-6 col-lg-6">
-    <input required class="form-control" type="text" [value]="computerToUpdate.gce_pantalla"
-      id="gce_pantalla_actualizado" placeholder="Pantalla">
-  </div>
-  <!-- gce_estado -->
-  <label class="mb-3 col-sm-6 col-lg-6 position-relative">
-    <div class="position-absolute">Estado</div>
-    <select class="form-select" id="gce_estado_actualizado">
-      <option value="0" [selected]="computerToUpdate.gce_estado === 0">Inactivo</option>
-      <option value="1" [selected]="computerToUpdate.gce_estado === 1">Activo</option>
-    </select>
-  </label>
-  <div class="col-3 mb-3 display-grid">
-    <button class="btn btn-primary" data-bs-dismiss="modal">
-      <i class="fas fa-plus-square me-2 vertical-align-middle" style="font-size: 1.2em"></i>
-      Guardar
-    </button>
-  </div>
-</form>
-<!-- </div>
+<ng-template #contenido let-modal>
+  <div class="modal-header">
+    <div class="modal-title" id="modalEdicionLabel">
+      <h5 class="fw-bold m-0">
+        Editar rol
+      </h5>
     </div>
+    <button type="button" class="btn-close" aria-label="Close" (click)="dismssModal()"></button>
   </div>
-</div> -->
+  <!-- <div class="modal-body"> -->
+  <div class="modal-body">
+
+    <form id="register-form" class="row" [formGroup]="updatedForm" (ngSubmit)="onSubmit()">
+      <!-- gce_id -->
+      <div class="mb-3 col-lg-4 col-sm-6" hidden>
+        <input required class="form-control" type="text" formControlName="gce_id_actualizado" />
+        <!-- [value]="computerToUpdate.gce_id" -->
+      </div>
+      <!-- gce_nombre_equipo -->
+      <div class="mb-3 col-lg-4 col-sm-6">
+        <input required class="form-control" type="text" formControlName="gce_nombre_equipo_actualizado"
+          placeholder="Nombre del equipo" />
+        <!-- [value]="computerToUpdate.gce_nombre_equipo"  -->
+      </div>
+      <!-- gce_board -->
+      <div class="mb-3 col-lg-4 col-sm-6">
+        <input required class="form-control" type="text" formControlName="gce_board_actualizado" placeholder="Board" />
+        <!-- [value]="computerToUpdate.gce_board" -->
+      </div>
+      <!-- gce_case -->
+      <div class="mb-3 col-lg-4 col-sm-6">
+        <input required class="form-control" type="text" formControlName="gce_case_actualizado" placeholder="Case" />
+        <!-- [value]="computerToUpdate.gce_case" -->
+      </div>
+      <!-- gce_procesador -->
+      <div class="mb-3 col-lg-4 col-sm-6">
+        <input required class="form-control" type="text" formControlName="gce_procesador_actualizado"
+          placeholder="Procesador" />
+        <!-- [value]="computerToUpdate.gce_procesador" -->
+      </div>
+      <!-- gce_grafica -->
+      <div class="mb-3 col-lg-4 col-sm-6">
+        <input required class="form-control" type="text" formControlName="gce_grafica_actualizado"
+          placeholder="Gráfica" />
+        <!-- [value]="computerToUpdate.gce_grafica" -->
+      </div>
+      <!-- gce_ram -->
+      <div class="mb-3 col-lg-4 col-sm-6">
+        <input required class="form-control" type="text" formControlName="gce_ram_actualizado" placeholder="Ram" />
+        <!-- [value]="computerToUpdate.gce_ram" -->
+      </div>
+      <!-- gce_disco_duro -->
+      <div class="mb-3 col-lg-4 col-sm-6">
+        <input required class="form-control" type="text" formControlName="gce_disco_duro_actualizado"
+          placeholder="Disco" />
+        <!-- [value]="computerToUpdate.gce_disco_duro"  -->
+      </div>
+      <!-- gce_teclado -->
+      <div class="mb-3 col-lg-4 col-sm-6">
+        <input required class="form-control" type="text" formControlName="gce_teclado_actualizado"
+          placeholder="Teclado" />
+        <!-- [value]="computerToUpdate.gce_teclado" -->
+      </div>
+      <!-- gce_mouse -->
+      <div class="mb-3 col-lg-4 col-sm-6">
+        <input required class="form-control" type="text" formControlName="gce_mouse_actualizado" placeholder="Mouse" />
+        <!-- [value]="computerToUpdate.gce_mouse" -->
+      </div>
+      <!-- gce_pantalla -->
+      <div class="mb-3 col-sm-6 col-lg-6">
+        <input required class="form-control" type="text" formControlName="gce_mouse_actualizado"
+          placeholder="Pantalla" />
+        <!-- [value]="computerToUpdate.gce_pantalla" -->
+      </div>
+      <!-- gce_estado -->
+      <label class="mb-3 col-sm-6 col-lg-6 position-relative">
+        <div class="position-absolute">Estado</div>
+        <select class="form-select">
+          <option value="0" [selected]="computerToUpdate.gce_estado === 0">Inactivo</option>
+          <option value="1" [selected]="computerToUpdate.gce_estado === 1">Activo</option>
+        </select>
+      </label>
+      <div class="col-3 mb-3 display-grid">
+        <button class="btn btn-primary" type="submit">
+          <i class="fas fa-plus-square me-2 vertical-align-middle" style="font-size: 1.2em"></i>
+          Guardar
+        </button>
+      </div>
+    </form>
+  </div>
+</ng-template>

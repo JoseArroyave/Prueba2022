@@ -7,10 +7,9 @@ import { Computer } from '../app.interface';
   templateUrl: './formulario.component.html',
   styleUrls: []
 })
-export class FormularioComponent implements OnInit {
+export class FormularioComponent {
 
   @Output() computadorNuevo = new EventEmitter<Computer>()
-
 
   gce_nombre_equipo = ''
   gce_board = ''
@@ -28,9 +27,6 @@ export class FormularioComponent implements OnInit {
 
 
   constructor() { }
-
-  ngOnInit(): void {
-  }
 
   agregar() {
     this.computadorNuevo.emit({

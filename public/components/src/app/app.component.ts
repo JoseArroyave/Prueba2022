@@ -1,8 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import { Subscription } from 'rxjs';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import Swal from 'sweetalert2';
-import { Computer, ComputerUpdate } from './app.interface';
+import { ComputerUpdate } from './app.interface';
 import { AppService } from './app.service';
+import { FormularioModalComponent } from './formulario-modal/formulario-modal.component';
 
 @Component({
   selector: 'app-root',
@@ -14,10 +14,18 @@ export class AppComponent implements OnInit {
   computers: any = []
   computerToUpdate: any = []
 
+  @ViewChild('contenido') contenido!: FormularioModalComponent;
+
   constructor(private service: AppService) { }
 
   ngOnInit(): void {
     this.getAll()
+  }
+
+  changeSwitch(id: number, status: any) {
+    this.service.updateStatus({ gce_id_actualizado: id, gce_estado_actualizado: status }).subscribe(resp =>
+      console.log(resp)
+    )
   }
 
   getAll() {
@@ -28,6 +36,7 @@ export class AppComponent implements OnInit {
     this.service.getOne(id).subscribe(computerToUpdate =>
       this.computerToUpdate = computerToUpdate
     )
+    this.contenido.openModal()
   }
 
   delete(id: number) {
